@@ -1,0 +1,114 @@
+body {
+  background-image: url("../assets/bg.svg") !important;
+  background-size: cover !important;
+}
+
+h1 {
+  color: white !important;
+  padding-top: 50px !important;
+  font-weight: 400 !important;
+  font-family:'Apercu Medium' !important;
+  font-weight:normal !important;
+  font-size:42px !important;
+}
+
+.originalURL {
+  font-weight: normal;
+  color: white !important;
+  font-family: 'Apercu Medium';
+}
+
+.genURL {
+  font-weight: bold;
+  color: white !important;
+}
+
+.footer {
+  position: fixed;
+  font-family: 'Apercu Regular';
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding-top: 5.5px;
+  padding-bottom: 5.5px;
+  background-color: #900C3F;
+  color: white !important;
+  text-align: center;
+}
+
+.footer,
+a {
+  text-decoration: none;
+  color: white !important;
+}
+
+@font-face {
+  font-family: 'Apercu Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Apercu Regular'), url('../assets/fonts/Apercu_Regular.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Apercu Italic';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Apercu Italic'), url('../assets/fonts/Apercu Italic.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Apercu Light';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Apercu Light'), url('../assets/fonts/Apercu Light.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Apercu Light Italic';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Apercu Light Italic'), url('../assets/fonts/Apercu Light Italic.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Apercu Medium';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Apercu Medium'), url('../assets/fonts/Apercu Medium.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Apercu Medium Italic';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Apercu Medium Italic'), url('../assets/fonts/Apercu Medium Italic.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Apercu Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Apercu Bold'), url('../assets/fonts/Apercu Bold.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Apercu Bold Italic';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Apercu Bold Italic'), url('../assets/fonts/Apercu Bold Italic.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Apercu Mono Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Apercu Mono Regular'), url('../assets/fonts/Apercu Mono.woff') format('woff');
+}

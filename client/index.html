@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#1F0022">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/favicon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <title>URL Shortener</title>
+</head>
+
+<body>
+
+    <div class="ui center aligned container">
+
+        <h1> URL Shortener</h1>
+        <form action="/" method="POST">
+            <p class="originalURL">Original URL</p>
+            <div class="ui fluid action input">
+                <input type="url" name="inputUrl" id="inputUrl" placeholder="Enter the URL" required>
+                <button class="ui yellow button" id="shortbtn" type="submit">Shorten URL</button>
+            </div>
+            <br>
+            <p class="genURL">Shortened URL</p>
+            <div class="ui action input">
+                <input type="text" id="output" value="shortlink.now.sh/xhJX3N" placeholder="Generated Short URL"
+                    readonly>
+                <button class="ui teal right labeled icon yellow button" onclick="myFunction()">
+                    <i class="copy icon"></i>
+                    Copy
+                </button>
+            </div>
+    </div>
+    </form>
+    <div class="footer">
+        <p>Made with ❤️ by <a href="https://raghavsharma.xyz">Raghav</a>, fork me on <a
+                href="https://github.com/raghav4/ShortLink">GitHub </a></p>
+    </div>
+</body>
+<script>
+    let input = document.getElementById("inputUrl");
+    input.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("shortbtn").click();
+        }
+    });
+
+    function myFunction() {
+        let copyText = document.getElementById("output");
+        copyText.select();
+        document.execCommand("copy");
+    }
+
+    function fn2() {
+        let addLoading = document.getElementById("input");
+        addLoading.classList.add("loading");
+        setTimeout(() => {
+            addLoading.classList.remove("loading");
+        }, 3000);
+    }
+</script>
+
+</html>
