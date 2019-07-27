@@ -23,31 +23,43 @@
         <h1> URL Shortener</h1>
         <p class="originalURL">Original URL</p>
         <div class="ui fluid action input">
+            <!--input url-->
             <input type="url" name="inputUrl" id="inputUrl" placeholder="Enter the URL" required>
-            <button class="ui yellow button" id="shortbtn" onclick="sendReq()" type="submit">Shorten URL</button>
+            <button class="ui yellow button" id="shortbtn" onclick="SendRequest()" type="submit">Shorten URL</button>
         </div>
         <br>
         <p class="genURL">Shortened URL</p>
         <div class="ui action input">
+            <!--output shortlink-->
             <input type="text" id="outputLink" name="outputUrl" value="" placeholder="Generated Short URL" readonly>
-            <!--readonly-->
+            <!--output copy button-->
             <button class="ui teal right labeled icon yellow button" type="button" onclick="copyLink()">
                 <i class="copy icon"></i>
                 Copy
             </button>
         </div>
     </div>
-
+    <!--footer-->
     <div class="footer">
         <p>Made with ❤️ by <a href="https://raghavsharma.xyz">Raghav</a>, fork me on <a
                 href="https://github.com/raghav4/ShortLink">GitHub </a></p>
     </div>
 </body>
 <script>
-    function sendReq() {
-        let input = document.getElementById("inputUrl").value;
+    let addLoading = document.getElementById("shortbtn");
+    let input = document.getElementById("inputUrl");
+    input.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            // event.preventDefault();
+            addLoading.classList.add("loading");
+            setTimeout(() => {
+                document.getElementById("shortbtn").click();
+            }, 0800);
+        }
+    });
+    function SendRequest() {
         const object = {
-            inputUrl: input
+            inputUrl: input.value
         };
         fetch("/transfer", {
                 method: 'POST',
@@ -59,19 +71,13 @@
             .then(function (response) {
                 if (response) {
                     console.log('Response is : ', response);
-                    let generated = response.ShortId;
-                    let generatedUrl = document.getElementById("outputLink").value = generated;
-                    console.log('Generated url is : ', generatedUrl);
+                    var outputvall = document.getElementById('outputLink').value = ('http://localhost:3000/' + response.ShortId);
+                    addLoading.classList.remove("loading");
+                    console.log('output value is ', outputvall)
                 }
             })
             .catch(error => console.error('Error:', error));
     }
-    input.addEventListener("keyup", function (event) {
-        if (event.keyCode === 13) {
-            event.preventDefault();
-            document.getElementById("shortbtn").click();
-        }
-    });
 
     function copyLink() {
         let copyText = document.getElementById("outputLink");
@@ -80,10 +86,9 @@
     }
 
     function fn2() {
-        let addLoading = document.getElementById("input");
-        addLoading.classList.add("loading");
+       
         setTimeout(() => {
-            addLoading.classList.remove("loading");
+            
         }, 3000);
     }
 </script>
