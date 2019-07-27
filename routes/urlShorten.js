@@ -15,6 +15,7 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/transfer', async (req, res) => {
+    console.log(req.body);
     const input = req.body.inputUrl;
     const short = ids.store(input);
 

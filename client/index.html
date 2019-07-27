@@ -21,32 +21,51 @@
     <div class="ui center aligned container">
 
         <h1> URL Shortener</h1>
-        <form action="/transfer" method="POST">
-            <p class="originalURL">Original URL</p>
-            <div class="ui fluid action input">
-                <input type="url" name="inputUrl" id="inputUrl" placeholder="Enter the URL" required>
-                <button class="ui yellow button" id="shortbtn" onclick="sendRequest()" type="submit">Shorten
-                    URL</button>
-            </div>
-            <br>
-            <p class="genURL">Shortened URL</p>
-            <div class="ui action input">
-                <input type="text" id="outputLink" name="outputUrl" value="hello" placeholder="Generated Short URL"
-                    readonly>
-                <button class="ui teal right labeled icon yellow button" type="button" onclick="copyLink()">
-                    <i class="copy icon"></i>
-                    Copy
-                </button>
-            </div>
+        <p class="originalURL">Original URL</p>
+        <div class="ui fluid action input">
+            <input type="url" name="inputUrl" id="inputUrl" placeholder="Enter the URL" required>
+            <button class="ui yellow button" id="shortbtn" onclick="sendReq()" type="submit">Shorten URL</button>
+        </div>
+        <br>
+        <p class="genURL">Shortened URL</p>
+        <div class="ui action input">
+            <input type="text" id="outputLink" name="outputUrl" value="" placeholder="Generated Short URL" readonly>
+            <!--readonly-->
+            <button class="ui teal right labeled icon yellow button" type="button" onclick="copyLink()">
+                <i class="copy icon"></i>
+                Copy
+            </button>
+        </div>
     </div>
-    </form>
+
     <div class="footer">
         <p>Made with ❤️ by <a href="https://raghavsharma.xyz">Raghav</a>, fork me on <a
                 href="https://github.com/raghav4/ShortLink">GitHub </a></p>
     </div>
 </body>
 <script>
-    let input = document.getElementById("inputUrl");
+    function sendReq() {
+        let input = document.getElementById("inputUrl").value;
+        const object = {
+            inputUrl: input
+        };
+        fetch("/transfer", {
+                method: 'POST',
+                body: JSON.stringify(object), 
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(res => res.json())
+            .then(function (response) {
+                if (response) {
+                    console.log('Response is : ', response);
+                    let generated = response.ShortId;
+                    let generatedUrl = document.getElementById("outputLink").value = generated;
+                    console.log('Generated url is : ', generatedUrl);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
     input.addEventListener("keyup", function (event) {
         if (event.keyCode === 13) {
             event.preventDefault();
@@ -54,29 +73,13 @@
         }
     });
 
-    function sendRequest() {
-        alert("Hello!")
-        var generatedUrl = document.getElementById("outputLink").value;
-        axios.post('http://localhost:3000/transfer', {
-                inputUrl: 
-            })
-            .then(function (response) {
-                alert(response);
-            })
-            .catch(function (error) {
-                alert(error);
-            });
-
-        document.getElementById("outputLink").value = "Ram is here"
-    }
-
     function copyLink() {
         let copyText = document.getElementById("outputLink");
         copyText.select();
         document.execCommand("copy");
     }
 
-    function loader() {
+    function fn2() {
         let addLoading = document.getElementById("input");
         addLoading.classList.add("loading");
         setTimeout(() => {
