@@ -9,10 +9,6 @@ const urlSchema = new mongoose.Schema({
     ShortId: {
         type: String,
         required: true
-    },
-    fetch: {
-        type: String,
-        required: true
     }
 });
 

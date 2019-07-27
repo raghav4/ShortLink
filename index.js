@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static('client'));
 app.use('/', urlshorten);
 
-mongoose.connect('mongodb://localhost/url-shortener',{ useNewUrlParser: true})
+mongoose.connect('mongodb://localhost/url-shortener', { useNewUrlParser: true})
     .then(() => console.log('Connected to mongodb...'))
     .catch(err => console.error('Cant connect to mongodb..'))
 

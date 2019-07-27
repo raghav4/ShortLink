@@ -21,18 +21,19 @@
     <div class="ui center aligned container">
 
         <h1> URL Shortener</h1>
-        <form action="/" method="POST">
+        <form action="/transfer" method="POST">
             <p class="originalURL">Original URL</p>
             <div class="ui fluid action input">
                 <input type="url" name="inputUrl" id="inputUrl" placeholder="Enter the URL" required>
-                <button class="ui yellow button" id="shortbtn" type="submit">Shorten URL</button>
+                <button class="ui yellow button" id="shortbtn" onclick="sendRequest()" type="submit">Shorten
+                    URL</button>
             </div>
             <br>
             <p class="genURL">Shortened URL</p>
             <div class="ui action input">
-                <input type="text" id="output" value="shortlink.now.sh/xhJX3N" placeholder="Generated Short URL"
+                <input type="text" id="outputLink" name="outputUrl" value="hello" placeholder="Generated Short URL"
                     readonly>
-                <button class="ui teal right labeled icon yellow button" onclick="myFunction()">
+                <button class="ui teal right labeled icon yellow button" type="button" onclick="copyLink()">
                     <i class="copy icon"></i>
                     Copy
                 </button>
@@ -53,13 +54,29 @@
         }
     });
 
-    function myFunction() {
-        let copyText = document.getElementById("output");
+    function sendRequest() {
+        alert("Hello!")
+        var generatedUrl = document.getElementById("outputLink").value;
+        axios.post('http://localhost:3000/transfer', {
+                inputUrl: 
+            })
+            .then(function (response) {
+                alert(response);
+            })
+            .catch(function (error) {
+                alert(error);
+            });
+
+        document.getElementById("outputLink").value = "Ram is here"
+    }
+
+    function copyLink() {
+        let copyText = document.getElementById("outputLink");
         copyText.select();
         document.execCommand("copy");
     }
 
-    function fn2() {
+    function loader() {
         let addLoading = document.getElementById("input");
         addLoading.classList.add("loading");
         setTimeout(() => {
