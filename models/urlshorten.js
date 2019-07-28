@@ -8,6 +8,13 @@ const urlSchema = new mongoose.Schema({
     },
     ShortId: {
         type: String
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    createdBy: {
+        type: Number
     }
 });
 
