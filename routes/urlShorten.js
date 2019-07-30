@@ -3,15 +3,19 @@ const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 const ids = require('short-id');
+const validUrl = require('valid-url');
 
 ids.configure({
     length: 5
 });
 
 router.get('/:id', async (req, res) => {
-    const url = await Url.findOne({
+    let url = await Url.findOne({
         ShortId: req.params.id
     });
+    // url.clicks ++;
+    // await url.save();
+    console.log('Get request for ', url);
     res.writeHead(301, {
         Location: url.inputUrl
     });
@@ -48,27 +52,31 @@ router.get('/:id/:custom', async(req,res)=>{
 
 router.post('/transfer', async (req, res) => {
     const input = req.body.inputUrl;
-    const short = ids.store(input);
+    if((validUrl.isUri(input))){
+        const short = ids.store(input);
 
-    let url = await Url.findOne({
-        inputUrl: input
-    });
-    if (url) {
-        url.createdBy++;
+        let url = await Url.findOne({
+            inputUrl: input
+        });
+        if (url) {
+            url.createdBy++;
+            await url.save();
+            console.log('Already exits : ', url);
+            return res.send(url);
+        }
+
+        url = new Url({
+            inputUrl: input,
+            ShortId: short,
+            createdBy: 1
+        });
+
         await url.save();
-        console.log('Already exits : ', url);
-        return res.send(url);
+        res.send(url);
+        console.log('Created New : ', url);
+    } else{
+        res.status(400).send('Please Enter a Valid URL');
     }
-
-    url = new Url({
-        inputUrl: input,
-        ShortId: short,
-        createdBy: 1
-    });
-
-    await url.save();
-    res.send(url);
-    console.log('Created New : ', url);
 });
 
 module.exports = router;

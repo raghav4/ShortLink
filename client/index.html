@@ -19,12 +19,12 @@
 <body>
 
     <div class="ui center aligned container">
-
         <h1> URL Shortener</h1>
         <p class="originalURL">Original URL</p>
+        <div id="invalidUrl"></div>
         <div class="ui fluid action input">
             <!--input url-->
-            <input type="url" name="inputUrl" id="inputUrl" placeholder="Enter the URL" required autofocus>
+            <input type="url" name="inputUrl" id="inputUrl" placeholder="Enter the URL" required>
             <button class="ui yellow button" id="shortbtn" onclick="SendRequest()" type="submit">Shorten URL</button>
         </div>
         <br>
@@ -54,16 +54,18 @@
             addLoading.classList.add("loading");
             setTimeout(() => {
                 document.getElementById("shortbtn").click();
-            }, 0800);
+            }, 0000); // time.
         }
     });
+
     function SendRequest() {
+        var children = document.getElementById("invalidUrl").hasChildNodes();
         const object = {
             inputUrl: input.value
         };
         fetch("/transfer", {
                 method: 'POST',
-                body: JSON.stringify(object), 
+                body: JSON.stringify(object),
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -71,25 +73,32 @@
             .then(function (response) {
                 if (response) {
                     console.log('Response is : ', response);
-                    var outputvall = document.getElementById('outputLink').value = ('http://localhost:3000/' + response.ShortId);
-                    addLoading.classList.remove("loading");
-                    console.log('output value is ', outputvall)
+                    var outputValue = document.getElementById('outputLink').value = ('http://localhost:3000/' +
+                        response.ShortId);
+                    // console.log('output value is ', outputValue)
+                }
+                if (children) {
+                    var rem = document.getElementById('removeThis').remove();
                 }
             })
-            .catch(error => console.error('Error:', error));
+            .catch(function (error) {
+                if (error) {
+                    if (!children) {
+                        var invalid = document.createElement('div');
+                        invalid.className = "ui pointing below red label";
+                        invalid.setAttribute('id', 'removeThis')
+                        invalid.innerText = "Please enter a valid URL";
+                        document.getElementById("invalidUrl").appendChild(invalid);
+                    }
+                }
+            })
+        addLoading.classList.remove("loading");
     }
 
     function copyLink() {
         let copyText = document.getElementById("outputLink");
         copyText.select();
         document.execCommand("copy");
-    }
-
-    function fn2() {
-       
-        setTimeout(() => {
-            
-        }, 3000);
     }
 </script>
 
