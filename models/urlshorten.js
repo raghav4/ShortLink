@@ -10,11 +10,14 @@ const urlSchema = new mongoose.Schema({
         type: String
     },
     createdAt: {
-        type: Date,
-        default: Date.now
+        type: String
     },
     createdBy: {
         type: Number
+    },
+    views: {
+        type: Number,
+        default: 0
     }
 });
 

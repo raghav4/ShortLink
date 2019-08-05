@@ -1,6 +1,6 @@
 {
   "name": "ShortLink",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "url shortener",
   "main": "index.js",
   "scripts": {
@@ -19,10 +19,23 @@
   },
   "homepage": "https://github.com/raghav4/ShortLink#readme",
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
+    "config": "^3.2.2",
+    "date-time": "^3.1.0",
     "express": "^4.17.1",
-    "mongoose": "^5.6.6",
+    "express-device": "^0.4.2",
+    "ip": "^1.1.5",
+    "joi": "^14.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "mongoose": "^5.6.8",
+    "mongoose-increment": "^2.0.0",
+    "pug": "^2.0.4",
     "short-id": "0.1.0-1",
     "valid-url": "^1.0.9"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
   }
 }

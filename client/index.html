@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
         integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
     <link rel="shortcut icon" href="assets/favicon/favicon.ico" type="image/x-icon">
     <link rel="icon" href="assets/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
@@ -45,61 +44,6 @@
                 href="https://github.com/raghav4/ShortLink">GitHub </a></p>
     </div>
 </body>
-<script>
-    let addLoading = document.getElementById("shortbtn");
-    let input = document.getElementById("inputUrl");
-    input.addEventListener("keyup", function (event) {
-        if (event.keyCode === 13) {
-            // event.preventDefault();
-            addLoading.classList.add("loading");
-            setTimeout(() => {
-                document.getElementById("shortbtn").click();
-            }, 0000); // time.
-        }
-    });
-
-    function SendRequest() {
-        var children = document.getElementById("invalidUrl").hasChildNodes();
-        const object = {
-            inputUrl: input.value
-        };
-        fetch("/transfer", {
-                method: 'POST',
-                body: JSON.stringify(object),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(res => res.json())
-            .then(function (response) {
-                if (response) {
-                    console.log('Response is : ', response);
-                    var outputValue = document.getElementById('outputLink').value = ('http://localhost:3000/' +
-                        response.ShortId);
-                    // console.log('output value is ', outputValue)
-                }
-                if (children) {
-                    var rem = document.getElementById('removeThis').remove();
-                }
-            })
-            .catch(function (error) {
-                if (error) {
-                    if (!children) {
-                        var invalid = document.createElement('div');
-                        invalid.className = "ui pointing below red label";
-                        invalid.setAttribute('id', 'removeThis')
-                        invalid.innerText = "Please enter a valid URL";
-                        document.getElementById("invalidUrl").appendChild(invalid);
-                    }
-                }
-            })
-        addLoading.classList.remove("loading");
-    }
-
-    function copyLink() {
-        let copyText = document.getElementById("outputLink");
-        copyText.select();
-        document.execCommand("copy");
-    }
-</script>
+<script src="./js/script.js"></script>
 
 </html>

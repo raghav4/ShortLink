@@ -1,0 +1,23 @@
+h2 {
+    padding-top: 30px !important;
+    text-align: center !important;
+    font-family: 'Inter Regular' !important;
+    font-weight: 600 !important;
+    text-decoration: underline !important;
+}
+.redirectTo{
+    text-align: center !important;
+    font-family: 'Inter Regular' !important;
+}
+.tableFormat {
+    margin-left: 55px !important;
+    margin-right: 55px !important;
+    font-family: 'Inter Regular' !important;
+}
+
+@font-face {
+    font-family: 'Inter Regular';
+    font-style: normal;
+    font-weight: normal !important;
+    src: local('Inter Regular'), url('../fonts/Inter-Regular.woff') format('woff');
+}
