@@ -3,5 +3,5 @@
 
 ### Todo 
 - [x] Shortener
-- [ ] Stats
+- [x] Stats
 - [ ] Custom URL with admin authentication
