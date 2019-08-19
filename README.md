@@ -1,7 +1,7 @@
 # ShortLink 🔗
 ### URL Shortener
 
-[](/static/urlshort.gif)
+![url shortener](/static/urlshort.gif)
 
 ### Todo 
 - [x] Shortener
