@@ -7,4 +7,4 @@
  ### Todo 
 - [x] Shortener	
 - [x] Stats
-- [] Custom Url with admin authentication
+- [ ] Custom Url with admin authentication
