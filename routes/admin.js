@@ -23,9 +23,10 @@ router.post('/', async (req, res) => {
 
     const token = jwt.sign({
         _id: admin._id
-    }, 'Enter your JWT Key here');
+    }, 'jwtPrivateKey');
 
     res.header('x-auth-token', token).send(_.pick(admin, ['username', '_id']));
 });
 
 module.exports = router;
+// Route to Register a New User

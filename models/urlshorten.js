@@ -15,12 +15,12 @@ const urlSchema = new mongoose.Schema({
     createdBy: {
         type: Number
     },
+    location: [String],
     views: {
-        type: Number,
-        default: 0
+        type: Number
     }
 });
 
-const Url = mongoose.model('Url',urlSchema);
+const Url = mongoose.model('Url', urlSchema);
 
 exports.Url = Url;

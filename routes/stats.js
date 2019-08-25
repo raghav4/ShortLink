@@ -11,12 +11,16 @@ router.get('/:id', async (req, res) => {
     
     let compressionRate = Math.round(((url.ShortId.length + 19)/(url.inputUrl.length))*100);
     compressionRate = 100 - compressionRate;
-    res.render('index',{
+    let statsObject = {
         inputUrl: url.inputUrl,
         CreatedAt: url.createdAt,
+        views: url.views,
         ShortId: 'https://tii.now.sh/' + url.ShortId,
-        CompressionRate: compressionRate
-    });
+        CompressionRate: compressionRate,
+        QRcode: `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tii.now.sh/${url.ShortId}`
+    }
+    
+    res.render('index',{ statsObject });
 });
 
 module.exports = router;

@@ -23,7 +23,6 @@ app.use('/c', custom);
 app.use('/register', admin);
 app.use('/auth', auth);
 app.use('/', urlshorten);
-
 mongoose.connect('mongodb://localhost/url-shortener', {
         useNewUrlParser: true
     })

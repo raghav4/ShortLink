@@ -12,22 +12,22 @@ body
     h2 Statistics Report
     p.redirectTo
       b Redirect to : 
-      a(href=inputUrl)
-        |  #{inputUrl}
+      a(href=statsObject.inputUrl)
+        |  #{statsObject.inputUrl}
     .tableFormat
-        table.ui.celled.red.definition.unstackable.table
+        table.ui.celled.green.definition.unstackable.table
             thead
                 tbody
                 tr
                     td Statistics for/ShortLink 
                     td  
-                        a#shortlink(href=ShortId) #{ShortId}
+                        a#shortlink(href=statsObject.ShortId) #{statsObject.ShortId}
                 tr
                     td Created At
-                    td #{CreatedAt}
+                    td #{statsObject.CreatedAt}
                 tr
                     td Views (Redirects) 
-                    td 5
+                    td #{statsObject.views}
                 tr
                     td Distinct Users 
                     td 2 
@@ -52,22 +52,35 @@ body
                             span#desktopUsers
                 tr
                     td Compression Rate
-                    td From #{inputUrl.length} characters to #{ShortId.length} characters: #{CompressionRate}% (#{inputUrl.length-ShortId.length} characters) shorter!
+                    td From #{statsObject.inputUrl.length} characters to #{statsObject.ShortId.length} characters: #{statsObject.CompressionRate}% (#{statsObject.inputUrl.length-statsObject.ShortId.length} characters) shorter!
                 tr
                     td QR Code
                     td
-                        img(src=`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${ShortId}`, alt='qrcode', width='120', height='120')
+                        img(src=statsObject.QRcode, alt='qrcode', width='120', height='120')
                         br
                         br
-                        a(href=`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${ShortId}`, target='_blank') Download QR
+                        a(href=statsObject.QRcode, target='_blank') Download QR
         br
         p
             i.fas.fa-download
             |  Download Report as 
-            a(href='#') csv
-            | , 
-            a(href='#') xlsx
-            | , 
-            a(href='#') json
+            //- a(onclick='tocsv()') csv
+            //- | , 
+            //- a(href='#') xlsx
+            //- | , 
+            a#exportJSON(onclick='exportJson(this);') json
         br
-        br     
+        br
+        script.
+            function exportJson(el) {
+                var obj = {
+                    inputUrl: '#{statsObject.inputUrl}',
+                    CreatedAt: '#{statsObject.CreatedAt}',
+                    ShortId: '#{statsObject.ShortId}',
+                    CompressionRate: '#{statsObject.CompressionRate}' + '%',
+                    QRcode: `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${'#{statsObject.ShortId}'}`
+                };
+                var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(obj));
+                el.setAttribute("href", "data:"+data);
+                el.setAttribute("download", "statistics.json");
+            }

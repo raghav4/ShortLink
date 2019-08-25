@@ -5,10 +5,12 @@ h2 {
     font-weight: 600 !important;
     text-decoration: underline !important;
 }
-.redirectTo{
+
+.redirectTo {
     text-align: center !important;
     font-family: 'Inter Regular' !important;
 }
+
 .tableFormat {
     margin-left: 55px !important;
     margin-right: 55px !important;
