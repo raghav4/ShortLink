@@ -16,6 +16,7 @@ const urlSchema = new mongoose.Schema({
         type: Number
     },
     location: [String],
+    device: [String],
     views: {
         type: Number
     }

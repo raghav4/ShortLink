@@ -6,6 +6,9 @@ const ids = require('short-id');
 const validUrl = require('valid-url');
 const dateTime = require('date-time');
 const ip = require('ip');
+const device = require('express-device');
+
+router.use(device.capture());
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
@@ -26,14 +29,12 @@ router.get('/:id', async (req, res) => {
         }
         console.log(doc);
     });
-    const nn = await url.updateOne({
-        location: url.location.push(toString(ip.address()))
-    });
-    console.log(nn);
-    console.log(ip.address());
-    url.location.push(ip.address());
-    await url.save();
-
+    url.location.push((ip.address()));
+    if(req.device.type.toUpperCase()=="TABLET"){
+       url.device.push('PHONE');
+    }
+    else url.device.push(req.device.type.toUpperCase());
+    url.save();
     res.writeHead(307, {
         Location: url.inputUrl
     });
