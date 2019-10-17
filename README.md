@@ -1,10 +1,18 @@
 # ShortLink 🔗
-### URL Shortener
+### A Url Shortener
 
+Built with **nodejs, expressjs, pugjs, mongodb**.
 
- ![url shortener](/static/urlshort.gif)
+### Quick Start
+```bash
+ # Install all the dependencies
+  npm install
+ # Start with nodemon
+  nodemon index.js
+```
+![url shortener home](./static/first.png)
+<br>
+![url shortener home](./static/stats.png)
 
- ### Todo 
-- [x] Shortener	
-- [x] Stats
-- [ ] Custom Url with admin authentication
+## LICENSE
+[MIT](https://github.com/raghav4/ShortLink/blob/master/LICENSE)

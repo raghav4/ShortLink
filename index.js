@@ -27,7 +27,7 @@ mongoose.connect('mongodb://localhost/url-shortener', {
         useNewUrlParser: true
     })
     .then(() => console.log('Connected to MongoDB...'))
-    .catch(err => console.error('Failed to connect to MongoDB...'))
+    .catch(err => console.error('Failed to connect to MongoDB...')))
 
 const PORT = process.env.PORT || 3000;
 app.listen((PORT), () => console.log(`Listening on Port ${PORT}...`));
