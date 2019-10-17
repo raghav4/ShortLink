@@ -8,10 +8,14 @@ router.get('/:id', async (req, res) => {
         ShortId: req.params.id
     });
     if (!url) return res.status(404).send(`Can't get Stats! As the shortlink with the given id does not exists!!`);
-    url.device.sort();
+
     let uniqueUsers = [...new Set(url.location)];
-    let mobileUsers = (url.device.indexOf('PHONE')==-1) ? 0 : url.device.indexOf('PHONE');
-    let desktopUsers = (url.device.lastIndexOf('DESKTOP')==-1)? 0 : url.device.lastIndexOf('DESKTOP');
+    let mobileUsers = 0;
+    let desktopUsers = 0;
+    for(var i = 0; i<url.device.length; i++){
+        if(url.device[i]=="DESKTOP") desktopUsers++;
+        else mobileUsers ++;
+    }
     let compressionRate = Math.round(((url.ShortId.length + 19)/(url.inputUrl.length))*100);
     compressionRate = 100 - compressionRate;
     let statsObject = {
@@ -21,8 +25,8 @@ router.get('/:id', async (req, res) => {
         ShortId: 'https://tii.now.sh/' + url.ShortId,
         CompressionRate: compressionRate,
         distinctUsers: uniqueUsers.length,
-        mobileUsers: url.device.length-mobileUsers,
-        desktopUsers: desktopUsers + 1,
+        mobileUsers: mobileUsers,
+        desktopUsers: desktopUsers,
         QRcode: `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tii.now.sh/${url.ShortId}`
     }
     
