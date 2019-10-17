@@ -34,7 +34,7 @@ router.get('/:id', async (req, res) => {
     url.location.push(ip.address());
     await url.save();
 
-    res.writeHead(301, {
+    res.writeHead(307, {
         Location: url.inputUrl
     });
     res.end();
