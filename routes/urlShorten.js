@@ -20,19 +20,19 @@ router.get('/:id', async (req, res) => {
         ShortId: req.params.id
     });
     if(!url) return res.status(404).send('ShortLink not found!!');
-    // Url.findOneAndUpdate({ShortId: req.params.id}, {$inc: {'views': 1}}, {new: true}, (err,doc) => {
-    //     if (err) {
-    //         console.log("Something wrong when updating data!");
-    //     }
-    //     console.log(doc);
-    // })
+    Url.findOneAndUpdate({ShortId: req.params.id}, {$inc: {'views': 1}}, {new: true}, (err,doc) => {
+        if (err) {
+            console.log("Something wrong when updating data!");
+        }
+        console.log(doc);
+    });
     const nn = await url.updateOne({
         location: url.location.push(toString(ip.address()))
     });
     console.log(nn);
     console.log(ip.address());
-    // url.location.push(ip.address());
-    // await url.save();
+    url.location.push(ip.address());
+    await url.save();
 
     res.writeHead(301, {
         Location: url.inputUrl
