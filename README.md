@@ -10,6 +10,8 @@ Built with **nodejs, expressjs, pugjs, mongodb**.
  # Start with nodemon
   nodemon index.js
 ```
+
+### Screenshots
 ![url shortener home](./static/first.png)
 <br>
 ![url shortener home](./static/stats.png)
