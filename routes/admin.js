@@ -2,8 +2,6 @@ const {Admin, validate} = require('../models/admin_model');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
-const _ = require('lodash');
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 router.post('/', async (req, res) => {

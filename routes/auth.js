@@ -2,8 +2,6 @@ const {Admin} = require('../models/admin_model');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
-const _ = require('lodash');
-const bcrypt = require('bcrypt');
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
 
