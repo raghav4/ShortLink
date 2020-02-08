@@ -1,7 +1,8 @@
+require('dotenv').config();
 const { Admin, validate } = require('../models/admin');
 const mongoose = require('mongoose');
 const readline = require('readline');
-
+const bcrypt = require('bcryptjs');
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
@@ -9,6 +10,14 @@ const rl = readline.createInterface({
 
 const print_error = '\x1b[31m%s\x1b[0m'; 
 const print_success = '\x1b[32m%s\x1b[0m'; 
+
+mongoose.connect(process.env.DB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+},function(err){
+    if(err) throw err;
+})
 
 function createUser() {
     rl.question('Please Enter Username : ', (username) => {
@@ -23,21 +32,30 @@ function createUser() {
                 rl.removeAllListeners()
                 return console.log(print_error, error.details[0].message);
             }
-
-            let admin = await new Admin({
-                username: username,
-                password: password
+            let admin = await Admin.findOne({
+                username
             });
-            console.log(admin);
-            const result = await admin.save(function(err,res){
-                if(err){
-                    console.log('err',err);
-                    return console.log('err',err);
-                }
-                else return console.log('res', res);
-            }); // save is not working
-            console.log(print_success, result);
-            rl.close(process.exit(1)); // close the process after done saving
+            if(admin){
+                console.log(print_error, 'Username already registered!!, Try with Different Username');
+                rl.close(process.exit(0));
+            }
+            admin = await new Admin({
+                username,
+                password
+            });
+            try {
+                const salt = await bcrypt.genSalt(10);
+                admin.password = await bcrypt.hash(admin.password, salt);
+                
+                const validPassword = await bcrypt.compare(password, admin.password);
+                // if(!validPassword) 
+                const result = await admin.save(); 
+                console.log(print_success, 'Successfully registered user!!');
+                rl.close(process.exit(1)); 
+            }
+            catch(ex){
+                console.log(print_error,ex.message);
+            }
         });
     });
 }
