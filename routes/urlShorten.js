@@ -17,7 +17,7 @@ mongoose.set('useCreateIndex', true);
 ids.configure({
     length: 4
 });
-
+// GET
 router.get('/:id', async (req, res) => {
     let url = await Url.findOne({
         ShortId: req.params.id
@@ -40,7 +40,7 @@ router.get('/:id', async (req, res) => {
     });
     res.end();
 });
-
+// POST
 router.post('/transfer', async (req, res) => {
     const input = req.body.inputUrl;
     if ((validUrl.isUri(input))) {
@@ -56,7 +56,7 @@ router.post('/transfer', async (req, res) => {
             createdBy: 1,
             views: 0
         });
-
+        
         await url.save();
         res.send(url);
         console.log('Created New : ', url);
