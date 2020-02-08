@@ -27,12 +27,7 @@
     "ip": "^1.1.5",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.1",
-<<<<<<< HEAD
     "mongoose": "^5.6.8",
-=======
-    "lodash": "^4.17.15",
-    "mongoose": "^5.7.5",
->>>>>>> 021a984aea5b4336c9cf9ade3afd83e7a4632276
     "mongoose-increment": "^2.0.0",
     "pug": "^2.0.4",
     "short-id": "0.1.0-1",

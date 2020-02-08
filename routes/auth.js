@@ -1,4 +1,4 @@
-const {Admin} = require('../models/admin_model');
+const {Admin} = require('../models/admin');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
