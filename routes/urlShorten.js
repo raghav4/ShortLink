@@ -22,7 +22,7 @@ router.get('/:id', async (req, res) => {
     let url = await Url.findOne({
         ShortId: req.params.id
     });
-    if(!url) return res.status(404).send('ShortLink not found!!');
+    if(!url) return res.render('error')
     Url.findOneAndUpdate({ShortId: req.params.id}, {$inc: {'views': 1}}, {new: true}, (err,doc) => {
         if (err) {
             console.log("Something wrong when updating data!");
