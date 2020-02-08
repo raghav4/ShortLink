@@ -1,3 +1,4 @@
 node_modules/
 .nowignore
 now.json
+.DS_Store
