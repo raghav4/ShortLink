@@ -1,10 +1,10 @@
 const {Url} = require('../models/urlshorten');
 const express = require('express');
 const router = express.Router();
-const auth = require('../middleware/auth');
+const login = require('../middleware/login');
 
 // Custom Url
-router.get('/:custom/:id', auth, async(req,res)=>{
+router.get('/:custom/:id', login, async(req,res)=>{
     let url = await Url.findOne({
         ShortId: req.params.id
     })
