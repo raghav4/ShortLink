@@ -21,7 +21,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
-    "config": "^3.2.2",
+    "config": "^3.3.0",
     "date-time": "^3.1.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -29,7 +29,7 @@
     "ip": "^1.1.5",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.8.11",
+    "mongoose": "^5.9.3",
     "mongoose-increment": "^2.0.0",
     "pug": "^2.0.4",
     "short-id": "0.1.0-1",

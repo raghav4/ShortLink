@@ -1,0 +1,46 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
+    link(rel='icon', href='../client/assets/favicon/login.ico', type='image/x-icon')
+    link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css')
+    title Admin
+  body
+    .ui.middle.aligned.center.aligned.grid
+      .column
+        form.ui.black.large.form(action='/c/auth' method='post')
+          .ui.stacked.secondary.segment
+            .field
+              .ui.left.icon.input
+                p Log-in as an admin to create custom links
+            .field
+              .ui.left.icon.input
+                i.user.icon
+                input(type='text', name='username', placeholder='Username' required)
+            .field
+              .ui.left.icon.input
+                i.lock.icon
+                input(type='password', name='password', placeholder='Password' required)
+            button(type="submit").ui.fluid.large.violet.submit.button Login
+          .ui.error.message
+    style.
+      body>.grid {
+      height: 100% !important;
+      }
+      .image {
+      margin-top: -100px !important;
+      }
+      .column {
+      max-width: 450px !important;
+      margin-left: 55px !important;
+      margin-right: 55px !important;
+      }
+      body {
+      color: #fff;
+      background: -webkit-linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%), -webkit-radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%);
+      background: -o-linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%), -o-radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%);
+      background: -moz-linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%), -moz-radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%);
+      background: linear-gradient(110deg, #a60af3 40%, rgba(0, 0, 0, 0) 30%), radial-gradient(farthest-corner at 0% 0%, #7a00cc 70%, #c03fff 70%);
+      }
