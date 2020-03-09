@@ -46,7 +46,6 @@ router.get("/:id", async (req, res) => {
 	res.end();
 });
 // POST
-
 router.post("/transfer", async (req, res) => {
 	const input = req.body.inputUrl;
 	if (validUrl.isUri(input)) {
