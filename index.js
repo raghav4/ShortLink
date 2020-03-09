@@ -1,10 +1,13 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 
 // Builtin Middlewares
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+// Cookie Parser
+app.use(cookieParser());
 app.use(express.static(__dirname + "/client"));
 app.use("/static", express.static(__dirname + "/static"));
 
