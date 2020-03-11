@@ -25,7 +25,7 @@ router.get("/:id", async (req, res) => {
 	});
 	if (!url) {
 		// this line was causing the error!
-		return res.send("Invalid URL"); // render is causing the error.
+		return res.render("error", { message: `404 - ShortID not found` }); // render is causing the error.
 	}
 	Url.findOneAndUpdate(
 		{ ShortId: req.params.id },

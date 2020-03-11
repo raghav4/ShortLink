@@ -14,14 +14,24 @@ router.get("/auth", (req, res) => {
 router.post("/auth", [auth, custom]);
 router.post("/custom", async (req, res) => {
 	const { ShortId, customId } = req.body;
+	if (customId == "c" || customId == "stats" || customId == "transfer") {
+		return res
+			.status(403)
+			.write("<h1>Not allowed to use the reserved keyword</h1>");
+	}
 	let url = await Url.findOne({ ShortId });
 	debug(url);
-	if (!url) return res.status(404).send(`URL with ShortId ${ShortId} not found`);
+	if (!url)
+		return res
+			.status(404)
+			.write(`<h1>URL with ShortId ${ShortId} not found</h1>`);
 	let checkCustom = await Url.findOne({ ShortId: customId });
 	if (checkCustom)
 		return res
 			.status(400)
-			.send("Custom URL is already registered/mapped, try a different one");
+			.write(
+				"<h2>Custom URL is already registered/mapped, try a different one</h2>"
+			);
 	url.ShortId = customId;
 	await url.save();
 	res.writeHead(301, {

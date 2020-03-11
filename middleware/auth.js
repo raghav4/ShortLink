@@ -11,12 +11,12 @@ module.exports = async function(req, res, next) {
 		username: false
 	};
 	if (!admin) {
-		return res.render("adminLogin", { user });
+		return res.write("<h1>Invalid Username</h1>");
 	}
 
 	// If user is registered but password is incorrect
 	const validPassword = await bcrypt.compare(req.body.password, admin.password);
-	if (!validPassword) return res.status(400).send("Invalid email or password!");
+	if (!validPassword) return res.status(400).write("<h1>Invalid password!</h1>");
 
 	// If password is valid then Create a jwt and store it in the cookies.
 	// Generate cookie only after the user has logged in successfully!
