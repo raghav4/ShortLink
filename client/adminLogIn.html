@@ -13,7 +13,7 @@
 <body>
 	<div class="ui middle aligned center aligned grid">
 		<div class="column">
-			<form action="/transfer" method="post" class="ui large form">
+			<form action="/c/auth" method="post" class="ui large form">
 				<div class="ui stacked secondary  segment">
 					<div class="field">
 						<div class="ui left icon input">
@@ -21,7 +21,9 @@
 						</div>
 					</div>
 					<div class="field">
-						<div id="invalidUrl"></div>
+						<div class="ui pointing below red label">
+							Please enter a valid username
+						</div>
 						<div class="ui left icon input">
 							<i class="user icon"></i>
 							<input type="text" name="username" placeholder="Username" />

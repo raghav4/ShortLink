@@ -7,7 +7,12 @@ module.exports = async function(req, res, next) {
 	debug(req.body);
 	const admin = await Admin.findOne({ username: req.body.username });
 	// If user is not registered!
-	if (!admin) return res.status(404).send("User Not registered!");
+	let user = {
+		username: false
+	};
+	if (!admin) {
+		return res.render("adminLogin", { user });
+	}
 
 	// If user is registered but password is incorrect
 	const validPassword = await bcrypt.compare(req.body.password, admin.password);
