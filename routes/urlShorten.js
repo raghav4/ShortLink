@@ -23,7 +23,10 @@ router.get("/:id", async (req, res) => {
 	let url = await Url.findOne({
 		ShortId: req.params.id
 	});
-	if (!url) return res.render("error");
+	if (!url) {
+		// this line was causing the error!
+		return res.send("Invalid URL"); // render is causing the error.
+	}
 	Url.findOneAndUpdate(
 		{ ShortId: req.params.id },
 		{ $inc: { views: 1 } },

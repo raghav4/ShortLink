@@ -17,6 +17,11 @@ router.post("/custom", async (req, res) => {
 	let url = await Url.findOne({ ShortId });
 	debug(url);
 	if (!url) return res.status(404).send(`URL with ShortId ${ShortId} not found`);
+	let checkCustom = await Url.findOne({ ShortId: customId });
+	if (checkCustom)
+		return res
+			.status(400)
+			.send("Custom URL is already registered/mapped, try a different one");
 	url.ShortId = customId;
 	await url.save();
 	res.writeHead(301, {
