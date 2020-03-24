@@ -7,6 +7,10 @@ const router = express.Router();
 const debug = require("debug")("customRoute");
 
 // Custom Url
+router.get("/getall", async (req, res) => {
+	const url = await Url.find({});
+	res.send(url);
+});
 router.get("/auth", (req, res) => {
 	if (!req.headers.cookie) return res.render("adminLogin");
 	res.render("custom");
