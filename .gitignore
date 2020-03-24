@@ -4,3 +4,4 @@ now.json
 .DS_Store
 .env
 .todo
+.now

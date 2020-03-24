@@ -1,5 +1,4 @@
 const { Admin } = require("../models/admin");
-const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const debug = require("debug")("authMiddleware");
 
@@ -7,9 +6,6 @@ module.exports = async function(req, res, next) {
 	debug(req.body);
 	const admin = await Admin.findOne({ username: req.body.username });
 	// If user is not registered!
-	let user = {
-		username: false
-	};
 	if (!admin) {
 		return res.write("<h1>Invalid Username</h1>");
 	}
@@ -21,7 +17,7 @@ module.exports = async function(req, res, next) {
 	// If password is valid then Create a jwt and store it in the cookies.
 	// Generate cookie only after the user has logged in successfully!
 	const token = await admin.generateAuthToken();
-	if (admin && validPassword) {
+	if (admin) {
 		debug("Logged in SuccessFully");
 		res.cookie("jwt-token", token, {
 			expires: new Date(Date.now() + 48 * 3600000)

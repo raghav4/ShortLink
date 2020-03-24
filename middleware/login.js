@@ -6,5 +6,4 @@ module.exports = function(req, res, next) {
 	const validateJwt = jwt.verify(cookie, process.env.jwtPrivateKey);
 	if (validateJwt) return res.redirect("/c/auth");
 	return res.render("adminLogin");
-	next();
 };

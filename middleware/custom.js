@@ -1,7 +1,4 @@
-const { Admin, validate } = require("../models/admin");
-const login = require("../middleware/login");
 const jwt = require("jsonwebtoken");
-const Cookies = require("js-cookie");
 const debug = require("debug")("customMiddleware");
 module.exports = function(req, res, next) {
 	// If there are no cookies, ask the user to log in again.
