@@ -5,7 +5,10 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "npx nodemon"
+		"start": "node index.js"
+	},
+	"engines": {
+		"node": "12.4.1"
 	},
 	"repository": {
 		"type": "git",
