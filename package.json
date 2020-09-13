@@ -38,5 +38,10 @@
 		"short-id": "0.1.0-1",
 		"valid-url": "^1.0.9"
 	},
-	"devDependencies": {}
+	"devDependencies": {
+		"eslint": "^7.9.0",
+		"eslint-config-airbnb-base": "^14.2.0",
+		"eslint-plugin-import": "^2.22.0",
+		"prettier": "^2.1.1"
+	}
 }
