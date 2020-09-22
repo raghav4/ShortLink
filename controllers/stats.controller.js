@@ -17,7 +17,9 @@ exports.getURLStats = async (req, res) => {
     else mobileUsers++;
   }
 
-  let compressionRate = Math.round(((url.ShortId.length + 19) / url.inputUrl.length) * 100);
+  let compressionRate = Math.round(
+    ((url.ShortId.length + 19) / url.inputUrl.length) * 100,
+  );
   compressionRate = 100 - compressionRate;
 
   const statsObject = {

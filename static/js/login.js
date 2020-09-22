@@ -22,14 +22,15 @@ function sendRequest() {
     .then((res) => res.json())
     .then((response) => {
       if (response) {
-        const outputValue = (document.getElementById('outputLink').value =					`https://tii.now.sh/${response.ShortId}`);
+        document.getElementById(
+          'outputLink',
+        ).value = `https://tii.now.sh/${response.ShortId}`);
       }
       if (children) {
-        const rem = document.getElementById('removeThis').remove();
+        document.getElementById('removeThis').remove();
       }
       addLoading.classList.remove('loading');
-    })
-    .catch((error) => {
+    }).catch((error) => {
       if (error) {
         addLoading.classList.remove('loading');
         if (!children) {

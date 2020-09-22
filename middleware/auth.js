@@ -23,7 +23,8 @@ module.exports = async function (req, res, next) {
       expires: new Date(Date.now() + 48 * 3600000),
     });
     return next();
-  } return res.render('adminLogin');
+  }
+  return res.render('adminLogin');
   // ? THIS FIXED THE BUG
   // ! Where and how does the req.body is having password and username?
 };

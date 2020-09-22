@@ -1,0 +1,9 @@
+{
+  "main": {},
+  "custom": {
+    "getAllRoutes": "/getall",
+    "authenticateAdmin": "/auth",
+    "createURL": "/custom"
+  },
+  "stats": {}
+}

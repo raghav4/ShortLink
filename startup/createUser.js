@@ -1,4 +1,5 @@
 require('dotenv').config();
+const debug = require('debug')('app:startup//createUser');
 const mongoose = require('mongoose');
 const readline = require('readline');
 const bcrypt = require('bcryptjs');
@@ -9,8 +10,8 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-const print_error = '\x1b[31m%s\x1b[0m';
-const print_success = '\x1b[32m%s\x1b[0m';
+const printError = '\x1b[31m%s\x1b[0m';
+const printSuccess = '\x1b[32m%s\x1b[0m';
 
 mongoose.connect(
   process.env.DB_URI,
@@ -35,14 +36,14 @@ function createUser() {
       if (error) {
         rl.close();
         rl.removeAllListeners();
-        return console.log(print_error, error.details[0].message);
+        return console.log(printError, error.details[0].message);
       }
       let admin = await Admin.findOne({
         username,
       });
       if (admin) {
         console.log(
-          print_error,
+          printError,
           'Username already registered!!, Try with Different Username',
         );
         rl.close(process.exit(0));
@@ -57,12 +58,12 @@ function createUser() {
 
         const { username: registerUsername } = await admin.save();
         console.log(
-          print_success,
+          printSuccess,
           `Successfully registered user!! : '${registerUsername}'`,
         );
         rl.close(process.exit(1));
       } catch (ex) {
-        console.log(print_error, ex.message);
+        console.log(printError, ex.message);
       }
     });
   });
