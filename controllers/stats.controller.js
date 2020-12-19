@@ -24,12 +24,12 @@ exports.getURLStats = async (req, res) => {
     inputUrl: url.inputUrl,
     CreatedAt: url.createdAt,
     views: url.views,
-    ShortId: `https://tiii.tk/${url.ShortId}`,
+    ShortId: `https://shrtlk.herokuapp.com/${url.ShortId}`,
     CompressionRate: compressionRate,
     distinctUsers: uniqueUsers.length,
     mobileUsers,
     desktopUsers,
-    QRcode: `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tiii.tk/${url.ShortId}`,
+    QRcode: `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://shrtlk.herokuapp.com/${url.ShortId}`,
   };
 
   return res.status(200).render('index', { statsObject });

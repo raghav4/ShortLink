@@ -24,7 +24,9 @@ const SendRequest = () => {
     .then((res) => res.json())
     .then((response) => {
       if (response) {
-        document.getElementById('outputLink').value = `https://tiii.tk/${response.ShortId}`;
+        document.getElementById(
+          'outputLink',
+        ).value = `https://shrtlk.herokuapp.com/${response.ShortId}`;
       }
       if (children) {
         document.getElementById('removeThis').remove();
