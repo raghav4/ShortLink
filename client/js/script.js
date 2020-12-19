@@ -22,7 +22,9 @@ function SendRequest() {
     .then((res) => res.json())
     .then((response) => {
       if (response) {
-        const outputValue = (document.getElementById('outputLink').value =					`https://tii.now.sh/${response.ShortId}`);
+        const outputValue = (document.getElementById(
+          'outputLink',
+        ).value = `https://tiii.tk/${response.ShortId}`);
       }
       if (children) {
         document.getElementById('removeThis').remove();
@@ -48,4 +50,13 @@ function copyLink() {
   const copyText = document.getElementById('outputLink');
   copyText.select();
   document.execCommand('copy');
+}
+
+function toggleCheckBox() {
+  const passWordInput = document.getElementById('passwordInput');
+  const checkbox = document.getElementById('checkbox');
+  // eslint-disable-next-line no-unused-expressions
+  checkbox.checked
+    ? passWordInput.classList.remove('disabled')
+    : passWordInput.classList.add('disabled');
 }

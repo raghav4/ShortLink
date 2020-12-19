@@ -1,47 +1,36 @@
-const debug = require('debug')('customRoute');
+/* eslint-disable no-underscore-dangle */
+require('dotenv').config();
 const express = require('express');
-const { Url } = require('../models/urlshorten');
-const login = require('../middleware/login');
+const jwt = require('jsonwebtoken');
+const debug = require('debug')('app:custom.routes.js');
 const auth = require('../middleware/auth');
+const login = require('../middleware/login');
 const custom = require('../middleware/custom');
+const { Admin } = require('../models/admin');
+const { customURLController } = require('../controllers');
 
 const router = express.Router();
 
-// Custom Url
-router.get('/getall', async (req, res) => {
-  const url = await Url.find({});
-  res.send(url);
+router.get('/getall', customURLController.getAllURLs);
+
+router.get('/update', async (req, res) => {
+  if (req.headers.cookie) {
+    try {
+      const decoded = jwt.verify(req.cookies['jwt-token'], process.env.jwtPrivateKey);
+      const admin = await Admin.findById(decoded._id);
+      if (admin) return res.status(200).render('custom');
+    } catch (ex) {
+      debug(ex.message);
+      res.cookie('jwt-token', {}, { maxAge: -1 });
+      return res.status(400).render('adminLogin');
+    }
+  }
+  return res.status(200).render('adminLogin');
 });
 
-router.get('/auth', (req, res) => {
-  if (!req.headers.cookie) return res.render('adminLogin');
-  res.render('custom');
-});
 router.post('/auth', [auth, custom]);
 
-router.post('/custom', async (req, res) => {
-  const { ShortId, customId } = req.body;
-  if (customId === 'c' || customId === 'stats' || customId === 'transfer') {
-    return res.status(403).write('<h1>Not allowed to use the reserved keyword</h1>');
-  }
-  const url = await Url.findOne({ ShortId });
-  debug(url);
-  if (!url) {
-    return res.status(404).write(`<h1>URL with ShortId ${ShortId} not found</h1>`);
-  }
-  const checkCustom = await Url.findOne({ ShortId: customId });
-  if (checkCustom) {
-    return res
-      .status(400)
-      .write('<h2>Custom URL is already registered/mapped, try a different one</h2>');
-  }
-  url.ShortId = customId;
-  await url.save();
-  res.writeHead(301, {
-    Location: url.inputUrl,
-  });
-  res.end();
-});
+router.post('/custom', customURLController.customURL);
 
 router.get('/', login);
 

@@ -24,7 +24,7 @@ function sendRequest() {
       if (response) {
         document.getElementById(
           'outputLink',
-        ).value = `https://tii.now.sh/${response.ShortId}`);
+        ).value = `https://tiii.tk/${response.ShortId}`);
       }
       if (children) {
         document.getElementById('removeThis').remove();

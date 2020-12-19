@@ -1,5 +1,6 @@
-const mongoose = require('mongoose');
+/* eslint-disable no-underscore-dangle */
 const Joi = require('joi');
+const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 
 const adminSchema = new mongoose.Schema({
@@ -17,6 +18,8 @@ const adminSchema = new mongoose.Schema({
     maxlength: 1024,
   },
 });
+
+// eslint-disable-next-line func-names
 adminSchema.methods.generateAuthToken = function () {
   return jwt.sign({ _id: this._id }, process.env.jwtPrivateKey);
 };

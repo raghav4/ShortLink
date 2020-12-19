@@ -19,6 +19,7 @@ app.set('views', `${__dirname}/views`);
 
 require('./startup/routes')(app);
 require('./startup/db')();
+require('./startup/prod')(app);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => debug(`Listening on Port ${PORT}...`));

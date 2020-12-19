@@ -32,5 +32,5 @@ exports.getURLStats = async (req, res) => {
     QRcode: `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tiii.tk/${url.ShortId}`,
   };
 
-  res.status(200).render('index', { statsObject });
+  return res.status(200).render('index', { statsObject });
 };

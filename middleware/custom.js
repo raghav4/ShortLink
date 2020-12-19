@@ -1,7 +1,9 @@
 const jwt = require('jsonwebtoken');
 const debug = require('debug')('customMiddleware');
 
-module.exports = function (req, res, next) {
+const getCookies = (req) => req.headers.cookie;
+
+module.exports = (req, res, next) => {
   // If there are no cookies, ask the user to log in again.
   if (!getCookies(req)) {
     debug('Cookies not present');
@@ -15,9 +17,5 @@ module.exports = function (req, res, next) {
     return res.redirect('/c');
   }
   res.render('custom');
-  next();
+  return next();
 };
-
-function getCookies(req) {
-  return req.headers.cookie;
-}
