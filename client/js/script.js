@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 const addLoading = document.getElementById('shortbtn');
 const input = document.getElementById('inputUrl');
 input.addEventListener('keyup', (event) => {
@@ -7,7 +9,7 @@ input.addEventListener('keyup', (event) => {
   }
 });
 
-function SendRequest() {
+const SendRequest = () => {
   const object = {
     inputUrl: input.value,
   };
@@ -22,9 +24,7 @@ function SendRequest() {
     .then((res) => res.json())
     .then((response) => {
       if (response) {
-        const outputValue = (document.getElementById(
-          'outputLink',
-        ).value = `https://tiii.tk/${response.ShortId}`);
+        document.getElementById('outputLink').value = `https://tiii.tk/${response.ShortId}`;
       }
       if (children) {
         document.getElementById('removeThis').remove();
@@ -44,19 +44,35 @@ function SendRequest() {
         }
       }
     });
-}
+};
 
-function copyLink() {
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer);
+    toast.addEventListener('mouseleave', Swal.resumeTimer);
+  },
+});
+
+const copyLink = () => {
   const copyText = document.getElementById('outputLink');
   copyText.select();
   document.execCommand('copy');
-}
+  Toast.fire({
+    icon: 'success',
+    title: 'Copied URL to clipboard',
+  });
+};
 
-function toggleCheckBox() {
+const toggleCheckBox = () => {
   const passWordInput = document.getElementById('passwordInput');
   const checkbox = document.getElementById('checkbox');
   // eslint-disable-next-line no-unused-expressions
   checkbox.checked
     ? passWordInput.classList.remove('disabled')
     : passWordInput.classList.add('disabled');
-}
+};
