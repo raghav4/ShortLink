@@ -10,55 +10,42 @@
   <a href="https://github.com/raghav4/ShortLink/blob/master/LICENSE" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/github/license/raghav4/ShortLink" />
   </a>
+  <a href="https://deepscan.io/dashboard#view=project&tid=8189&pid=10382&bid=285322" target="_blank">
+    <img alt="License: MIT" src="https://deepscan.io/api/teams/8189/projects/10382/branches/285322/badge/grade.svg" />
+  </a>
 </p>
-
-[![DeepScan grade](https://deepscan.io/api/teams/8189/projects/10382/branches/285322/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=8189&pid=10382&bid=285322)
 
 > URL Shortener service built with NodeJS, ExpressJS, MongoDB, PugJs, etc
 
 ### 🏠 [Homepage](https://github.com/raghav4/ShortLink#readme)
 
-### ✨ [Demo](https://tiii.tk)
+### ✨ [Demo](https://shrtlk.herokuapp.com)
 
-## Install
+## Steps to install and Run
 
-```sh
-npm install
-```
-
-## Usage
-
-```sh
-npx nodemon
-```
-
-## Use Environment Variables
-
-```sh
-# Create a .env file and add the environment variables
-DB_URI = mongodb://localhost/url-shortener
-jwtPrivateKey = jwtKey123
-```
-
-> Sample : [.env.example](https://github.com/raghav4/ShortLink/blob/master/.env.example)
+1. Make sure `node` is installed in your machine
+2. Run `npm install` command after opening the repository
+3. Create a `.env` file similar to `.env.example` present in the repository.
+4. Run `npm run dev` command to run the project in localhost.
+5. For registering new admin run `npm run create_admin`.
 
 ## Screenshots
 
 ### Home
 
-![url shortener home](./static/first.png)
+![url shortener home](./static/screenshots/home.png)
 
 ### Statistics
 
-![url shortener home](./static/stats.png)
+![url shortener stats](./static/screenshots/stats.png)
 
 ### Admin Login
 
-![url shortener home](./static/admin.png)
+![admin login](./static/screenshots/admin_login.png)
 
 ### Customize ShortId
 
-![url shortener home](./static/custom.png)
+![custom shortid](./static/screenshots/custom_route.png)
 
 ## Author
 
