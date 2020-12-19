@@ -12,11 +12,13 @@
   </a>
 </p>
 
+[![DeepScan grade](https://deepscan.io/api/teams/8189/projects/10382/branches/285322/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=8189&pid=10382&bid=285322)
+
 > URL Shortener service built with NodeJS, ExpressJS, MongoDB, PugJs, etc
 
 ### 🏠 [Homepage](https://github.com/raghav4/ShortLink#readme)
 
-### ✨ [Demo](https://tii.now.sh)
+### ✨ [Demo](https://tiii.tk)
 
 ## Install
 

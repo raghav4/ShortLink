@@ -1,10 +1,11 @@
-const custom = require("../routes/custom");
-const stats = require("../routes/stats");
-const urlShorten = require("../routes/urlShorten");
+const device = require('express-device');
+const stats = require('../routes/stats.routes');
+const custom = require('../routes/custom.routes');
+const urlShorten = require('../routes/urlShorten.routes');
 
-module.exports = function(app) {
-	// Routes
-	app.use("/c", custom);
-	app.use("/", urlShorten);
-	app.use("/stats", stats);
+module.exports = (app) => {
+  app.use(device.capture());
+  app.use('/c', custom);
+  app.use('/', urlShorten);
+  app.use('/stats', stats);
 };
