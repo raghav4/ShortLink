@@ -15,12 +15,10 @@ module.exports = async (req, res, next) => {
   }
 
   const token = await admin.generateAuthToken();
-  if (admin) {
-    debug('User Logged in SuccessFully');
-    res.cookie('jwt-token', token, {
-      expires: new Date(Date.now() + 48 * 3600000),
-    });
-    return next();
-  }
-  return res.render('adminLogin');
+
+  debug('User Logged in SuccessFully');
+  res.cookie('jwt-token', token, {
+    expires: new Date(Date.now() + 48 * 3600000),
+  });
+  return next();
 };

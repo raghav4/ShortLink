@@ -1,12 +1,12 @@
-const debug = require("debug")("app:controller//urlShorten");
-const ip = require("ip");
-const ids = require("short-id");
-const validUrl = require("valid-url");
-const dateTime = require("date-time");
-const { Url: URL } = require("../models/urlshorten");
+const debug = require('debug')('app:controller//urlShorten');
+const ip = require('ip');
+const ids = require('short-id');
+const validUrl = require('valid-url');
+const dateTime = require('date-time');
+const { Url: URL } = require('../models/urlshorten');
 
 ids.configure({
-  length: 5,
+  length: 4,
 });
 
 exports.createShortURL = async (req, res) => {
@@ -15,7 +15,7 @@ exports.createShortURL = async (req, res) => {
     const short = ids.store(input);
     let date = dateTime({ showTimeZone: true });
 
-    date = date.replace(" ", ", ");
+    date = date.replace(' ', ', ');
     const url = new URL({
       inputUrl: input,
       ShortId: short,
@@ -28,7 +28,7 @@ exports.createShortURL = async (req, res) => {
     debug(`Successfully generated a new ShortURL ${url}`);
     res.status(201).send(url);
   } else {
-    res.status(400).send("Please Enter a Valid URL");
+    res.status(400).send('Please Enter a Valid URL');
   }
 };
 
@@ -37,7 +37,7 @@ exports.getOriginalUrl = async (req, res) => {
     ShortId: req.params.id,
   });
   if (!url) {
-    return res.render("error", { message: "404 - ShortID not found" }); // render is causing the error.
+    return res.render('error', { message: '404 - ShortID not found' }); // render is causing the error.
   }
   URL.findOneAndUpdate(
     { ShortId: req.params.id },
@@ -45,14 +45,14 @@ exports.getOriginalUrl = async (req, res) => {
     { new: true },
     (err, doc) => {
       if (err) {
-        debug("Something went wrong while updating the data!");
+        debug('Something went wrong while updating the data!');
       }
       debug(doc);
-    }
+    },
   );
   url.location.push(ip.address());
-  if (req.device.type.toUpperCase() === "TABLET") {
-    url.device.push("PHONE");
+  if (req.device.type.toUpperCase() === 'TABLET') {
+    url.device.push('PHONE');
   } else url.device.push(req.device.type.toUpperCase());
   url.save();
   res.writeHead(307, {
